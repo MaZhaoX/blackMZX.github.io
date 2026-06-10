@@ -1,7 +1,24 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>遥感图像处理 图像校正 | blackMZX</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">遥感图像处理 图像校正</h1><a id="logo" href="/.">blackMZX</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/tags/"><i class="fa fa-clipboard"> 标签</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">遥感图像处理 图像校正</h1><div class="post-meta">2023-10-30<span> | </span><span class="category"><a href="/categories/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">遥感图像处理</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BE%90%E5%B0%84%E4%BC%A0%E8%BE%93"><span class="toc-number">1.</span> <span class="toc-text">辐射传输</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E7%A3%81%E6%B3%A2%E7%9A%84%E5%A4%A7%E6%B0%94%E4%BC%A0%E8%BE%93"><span class="toc-number">1.2.</span> <span class="toc-text">电磁波的大气传输</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%90%E5%B0%84%E4%BC%A0%E8%BE%93%E7%90%86%E8%AE%BA"><span class="toc-number">1.3.</span> <span class="toc-text">辐射传输理论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BE%90%E5%B0%84%E8%AF%AF%E5%B7%AE"><span class="toc-number">2.</span> <span class="toc-text">辐射误差</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%BE%90%E5%B0%84%E8%AF%AF%E5%B7%AE%E6%A0%A1%E6%AD%A3"><span class="toc-number">3.</span> <span class="toc-text">系统辐射误差校正</span></a></li></ol></div></div><div class="post-content"><p>  利用传感器观测目标的反射或辐射能量时，传感器的测量值与目标的光谱反射率或光谱辐亮度等物理条件是不一致的，这是因为测量值中包含了太阳位置和角度条件、薄雾等大气条件、或因传感器的性能不完备等条件引起的失真。为了正确评价目标的反射或辐射特征，必须清除这些失真，这就需要进行图像校正。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="author" content="blackMZX"/><meta name="copyright" content="blackMZX"/><meta name="theme-color" content="#FFB347"/><meta name="format-detection" content="telephone=no"/><meta name="keywords" content="遥感图像处理"/><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-touch-fullscreen" content="yes"/><meta name="application-name" content="遥感图像处理 图像校正 | blackMZX"/><meta name="apple-mobile-web-app-title" content="遥感图像处理 图像校正 | blackMZX"/><meta name="apple-mobile-web-app-status-bar-style" content="#FFB347"/><link rel="canonical" href="http://example.com/2023/10/30/遥感图像处理-图像校正/"/><meta name="description" content="利用传感器观测目标的反射或辐射能量时，传感器的测量值与目标的光谱反射率或光谱辐亮度等物理条件是不一致的，这是因为测量值中包含了太阳位置和角度条件、薄雾等大气条件、或因传感器的性能不完备等条件引起的失真。为了正确评价目标的反射或辐射特征，必须清除这些失真，这就需要进行图像校正。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遥感图像处理 图像校正 | blackMZX">
+<meta property="og:url" content="http://example.com/2023/10/30/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%A0%A1%E6%AD%A3/index.html">
+<meta property="og:site_name" content="blackMZX">
+<meta property="og:description" content="利用传感器观测目标的反射或辐射能量时，传感器的测量值与目标的光谱反射率或光谱辐亮度等物理条件是不一致的，这是因为测量值中包含了太阳位置和角度条件、薄雾等大气条件、或因传感器的性能不完备等条件引起的失真。为了正确评价目标的反射或辐射特征，必须清除这些失真，这就需要进行图像校正。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/10/30/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%A0%A1%E6%AD%A3/assets/images/Hexo-Theme-MEOW.png">
+<meta property="article:published_time" content="2023-10-30T01:36:07.000Z">
+<meta property="article:modified_time" content="2023-11-06T03:26:26.798Z">
+<meta property="article:author" content="blackMZX">
+<meta property="article:tag" content="遥感图像处理">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2023/10/30/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%A0%A1%E6%AD%A3/assets/images/Hexo-Theme-MEOW.png"><meta name="robots" content="index,follow"/><meta name="googlebot" content="index,follow"/><meta name="revisit-after" content="1 days"/><title>遥感图像处理 图像校正 | blackMZX</title><link rel="shortcut icon" href="/assets/images/Hexo-Theme-MEOW.ico"><link rel="preconnect" href="/assets"/><link rel="preconnect" href="assets"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="/css/third-party/dist/APlayer.min.css">
+<link rel="prefetch" href="/"/><link rel="prefetch" href="/archives"/><link rel="prefetch" href="/tags"/><meta name="generator" content="Hexo 6.3.0"></head><body bg-style="none"><div class="post-progressbar-container"><div class="post-progressbar"></div></div><header><div id="navbar"><div id="nav-info"><a id="site-icon" href="/" title="主页"><img src="/assets/images/Hexo-Theme-MEOW.png" alt="Logo"/></a><a id="site-name" href="/" title="主页"><div>blackMZX</div><img src="/assets/images/svg/uc/uc-home.svg" class="icon noview" alt="Icon"></a></div><div id="nav-menu"></div><div id="nav-function"><div id="menu-btn"><a href="javascript:void(0);" title="打开菜单"><img src="/assets/images/svg/uc/uc-menu.svg" class="icon noview" alt="Icon"></a></div></div></div></header><div id="menu-aside"><div id="menu-aside-container"><div id="menu-aside-info"><a href="/" title="主页"><img src="/assets/images/Hexo-Theme-MEOW.png" alt="Logo"/></a><a href="/" title="主页">blackMZX</a></div><hr/></div></div><main><div class="banner"><div class="banner-info"><div class="banner-avatar"><img src="/assets/images/Hexo-Theme-MEOW.png" alt="Avatar"/></div><div class="banner-title">「 MEOW 」</div></div></div><div class="post-container"><div class="post-main"><div class="post-content"><h1 class="post-title">遥感图像处理 图像校正</h1><div class="post-author"><span>作者: blackMZX</span></div><div class="post-meta"><div class="post-info"><div class="post-date"><div class="post-pubdate"><img src="/assets/images/svg/ta/ta-pubdate.svg" class="icon noview" alt="Icon"><span>发表于2023-10-30</span></div><div class="post-update"><img src="/assets/images/svg/ta/ta-update.svg" class="icon noview" alt="Icon"><span>更新于2023-11-06</span></div></div><div class="post-read"></div></div><div class="post-attribute"><div class="post-categories"><img src="/assets/images/svg/ta/ta-category.svg" class="icon noview" alt="Icon"><span><a class="post-categories-link" href="/categories/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">遥感图像处理</a></span></div><div class="post-tags"><img src="/assets/images/svg/ta/ta-tag.svg" class="icon noview" alt="Icon"><span><a class="post-tags-link" href="/tags/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">遥感图像处理</a></span></div></div></div><div class="post markdown" indent="false"><p>  利用传感器观测目标的反射或辐射能量时，传感器的测量值与目标的光谱反射率或光谱辐亮度等物理条件是不一致的，这是因为测量值中包含了太阳位置和角度条件、薄雾等大气条件、或因传感器的性能不完备等条件引起的失真。为了正确评价目标的反射或辐射特征，必须清除这些失真，这就需要进行图像校正。</p>
 <span id="more"></span>
 <h1 id="辐射传输"><a href="#辐射传输" class="headerlink" title="辐射传输"></a>辐射传输</h1><p>在可见光遥感和红外摇杆中，传感器接收到的地物辐射来自于地表，因此有必要了解基本的辐射传输过程。</p>
-<p><img src="https://s2.loli.net/2023/10/30/ZL8QPhjeiRg2SlN.png" alt="地表辐射传输"></p>
+<p><img   lazyload src="/assets/images/Meow-Loading.webp" data-lazy-src="https://s2.loli.net/2023/10/30/ZL8QPhjeiRg2SlN.png"  alt="地表辐射传输"></p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>1.立体角</strong></p>
 <p>点状物体辐射通常是以球面波的形式向外均匀的传播能量，立体角用来度量一个方向上某个面接受的辐射量的大小。</p>
 <p>一个锥面所围成的空间部分称为立体角，立体角是以锥的顶点为心、半径为1的球面被锥面所截得的面积$s$来度量的，度量单位称为立体弧度。设$r$为截面到点源的距离，那么立体角为$\frac{s}{r^2}$</p>
@@ -19,14 +36,14 @@
 <p><strong>1.可见光和红外传输</strong></p>
 <p>由于空气分子和悬浮颗粒地散射，可见光在大气层传输时会被削弱，传感器接收到大气散射部分的电磁波称为程辐射，或路径辐射。根据瑞利散射理论，大气的光学厚度$\tau_\lambda$与$\lambda^{-4}$成正比，这意味着大气中的分子散射对波长较短的电磁波（UV紫外光和蓝光）有影响，对红外线没有影响。</p>
 <p>由于参数可变性，悬浮颗粒散射的影响很难校正。因为悬浮颗粒的大小比空气分子大得多，所以悬浮颗粒散射量对$\lambda$的依赖性不大。在红外光谱区域，各种气体（主要是水蒸气和CO~2~）吸收的电磁波超过散射。</p>
-<p><img src="https://s2.loli.net/2023/11/01/Mdwvu2JN1FjtGmy.png" alt="大气对地球表面接受的可见光和红外部分太阳辐射的影响"></p>
+<p><img   lazyload src="/assets/images/Meow-Loading.webp" data-lazy-src="https://s2.loli.net/2023/11/01/Mdwvu2JN1FjtGmy.png"  alt="大气对地球表面接受的可见光和红外部分太阳辐射的影响"></p>
 <p>即使是相对清洁的大气也会与入射和反射的太阳能相互作用，对于某些波长，这些相互作用减少了到达地面的入射能量，并进一步减少了到达传感器的反射能量。因为某些气体的吸收以及气体分子和微粒的散射，大气的透射率降低，这些作用结合在一起产生了如图所示的投射曲线。</p>
-<p><img src="https://s2.loli.net/2023/11/02/FGaycQlYzbZSDAE.png" alt="典型的大气透射率曲线"></p>
+<p><img   lazyload src="/assets/images/Meow-Loading.webp" data-lazy-src="https://s2.loli.net/2023/11/02/FGaycQlYzbZSDAE.png"  alt="典型的大气透射率曲线"></p>
 <p><strong>2.热红外传输</strong></p>
 <p>红外线3~20$\mu m$部分大气的透射率如图，C0~2~ 、H~2~O、N~2~O和O~3~是主要的吸收气体。在$4.3\mu m(CO_2)$、$4.5\mu m(N_2O)$和$13\sim15\mu m(CO_2)$附近的光谱区的测量可以用来探测大气温度的剖面，$6\sim7\mu m$的区域可以用来探测水蒸气，$3.8\mu m$为中心的窄窗和$8.5\sim12.5\mu m$的宽窗可用来对地球表面进行观测。</p>
-<p><img src="https://s2.loli.net/2023/11/02/hF16rxQD3SlGm2O.png" alt="垂直入射通过标准大气时红外线区域的大气透射率"></p>
+<p><img   lazyload src="/assets/images/Meow-Loading.webp" data-lazy-src="https://s2.loli.net/2023/11/02/hF16rxQD3SlGm2O.png"  alt="垂直入射通过标准大气时红外线区域的大气透射率"></p>
 <h2 id="辐射传输理论"><a href="#辐射传输理论" class="headerlink" title="辐射传输理论"></a>辐射传输理论</h2><p>传感器接受目标物辐射或反射的电磁波，由此形成的遥感原始图像与目标相比是失真的，这是因为在太阳—大气—目标—大气—传感器的辐射传输过程中存在着许多干扰因素，使接收信号不能准确反映地表物理特征。为了正确反映目标物的反射和辐射特性，必须消除图像记录值中的各种干扰项，这就是辐射校正的主要内容。</p>
-<p><img src="https://s2.loli.net/2023/11/02/NbDf2IYGJEza4iZ.png" alt="辐射校正流程示意图"></p>
+<p><img   lazyload src="/assets/images/Meow-Loading.webp" data-lazy-src="https://s2.loli.net/2023/11/02/NbDf2IYGJEza4iZ.png"  alt="辐射校正流程示意图"></p>
 <p>在各种影响中，大气影响要首先予以考虑，大气散射与吸收对太阳的下行辐射和传感器接收的上行辐射的光谱特性造成深刻影响。</p>
 <p>在可见光-短红外光谱区，地球本身的辐射可以忽略，所以只考虑太阳光的辐射传输。传感器处的上行辐射量为：</p>
 <script type="math/tex; mode=display">
@@ -49,7 +66,7 @@ L_\lambda^e=L_\lambda^{eu}+L_\lambda^{ed}+L_\lambda^{ep}</script><p>由于电磁
 <p>太阳位置主要指高度角和方位角，随着高度角和方位角的不同地物入射照度也会发生变化，地物发的反射率也就随之改变。</p>
 <script type="math/tex; mode=display">
 E_{\tau(\theta,\lambda)}=E_{\tau(\lambda)}\cdot\sin\theta</script><p>式中，$E<em>{\tau(\theta,\lambda)}$为地面接收的照度，$E</em>{\tau(\lambda)}$为太阳透过大气候垂直太阳光的照度，$\theta$为太阳高度角。</p>
-<p><img src="https://s2.loli.net/2023/11/03/N6WZxVbRP4UraMz.png" alt="地面照度与太阳高度角关系"></p>
+<p><img   lazyload src="/assets/images/Meow-Loading.webp" data-lazy-src="https://s2.loli.net/2023/11/03/N6WZxVbRP4UraMz.png"  alt="地面照度与太阳高度角关系"></p>
 <p>总照度为：</p>
 <script type="math/tex; mode=display">
 E_{\tau(\theta)}=\int_0^\infty E_{\tau(\theta,\lambda)}d\lambda</script><p>太阳高度角较低时，图像上会产生阴影压盖其他地物图像造成同物异谱；太阳方位角的变换也会改变光照条件，所引起的误差通常只对图像细部特征产生影响。</p>
@@ -69,7 +86,122 @@ E_{\tau(\theta)}=\int_0^\infty E_{\tau(\theta,\lambda)}d\lambda</script><p>太�
 <p>如果进行拼接的图像间有重叠的部分，即可通过重叠部分的灰度分布进行修正。</p>
 <p>具体如下：设有F、G两张图像，以F为标准。设G上重叠部分灰度值小于$g_i$的像素百分数为P，对应在F上占有相同百分数P的像素灰度值为$f_i$，变换关系$g’_1=f_i$就是修正的解雇哟；类似可以找出G上所有重叠部分$g$值应变换的成的亮度值$g’$，据此产生与F灰度分布一致的G’。</p>
 <p>此方法的优点是简单，变换效果好，缺点是由于按概率分布进行像素灰度变换，因此存在位置配准误差。</p>
-</div><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">遥感图像处理</a></li></ul></div><div class="post-nav"><a class="next" href="/2023/10/23/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA%E5%92%8C%E6%8B%89%E4%BC%B8/">遥感图像处理 图像显示和拉伸</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://example.com"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img class="nofancybox" src="/img/avatar.png"/></a><p>To be a better man.</p><a class="info-icon" href="https://github.com/blackMZX" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B/">最优化模型</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">遥感图像处理</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B/" style="font-size: 15px;">最优化模型</a> <a href="/tags/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 15px;">遥感图像处理</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/10/30/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%A0%A1%E6%AD%A3/">遥感图像处理 图像校正</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/23/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA%E5%92%8C%E6%8B%89%E4%BC%B8/">遥感图像处理 图像显示和拉伸</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/13/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E7%BB%9F%E8%AE%A1%E6%8F%8F%E8%BF%B0/">遥感图像处理 数字图像的表示和统计描述</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/10/12/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E7%9A%84%E8%8E%B7%E5%8F%96%E5%92%8C%E5%AD%98%E5%82%A8/">遥感图像处理 数字图像的获取和存储</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/09/18/%E6%9C%80%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B-%E5%90%91%E9%87%8F%E5%92%8C%E5%87%BD%E6%95%B0/">最优化模型 向量和函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/09/11/%E6%9C%80%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B%20%E7%BB%AA%E8%AE%BA/">最优化模型 绪论</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">blackMZX.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="/js/love.js?v=1.0.0"></script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/x-mathjax-config">MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+<p>2）线性灰度变换</p>
+<p>该方法是在两张图像的重叠部分取出相对应的n个点，并利用这些点建立线性回归方程，然后利用该方程，以其中一副图像为标准计算另一幅图像的值，即可使两张图像灰度一致化。</p>
+<h1 id="传感器端的辐射校正"><a href="#传感器端的辐射校正" class="headerlink" title="传感器端的辐射校正"></a>传感器端的辐射校正</h1><p>在扫描方式的传感器中，传感器收集到的电磁波信号需要经光电转换系统转变成电信号记录下来，该信号量化后成为离散的灰度级别，仅在图像中具有相对大小的意义没有物理意义。经辐射校正后，灰度级别值转换为辐亮度或反射率。</p>
+<p>辐射校正利用已经建立的地物反射率与遥感图像像素值之间的关系，通过遥感图像的像素值计算传感器端的像素反射率。辐射校正后的数据，可以是辐亮度也可以使反射率。前者有量纲，后者是相对百分比，如果还需要进行其他校正则往往计算辐亮度。</p>
+<p><strong>1.可见光和近红外波段的辐射定标</strong></p>
+<p>辐射定标是在卫星飞越试验场地上空时，在选好的像素内测定探测器对应波段内的地物反射率$\rho_t$，同时测出气象要素和大气光学特性。再根据卫星过顶时的太阳几何位置、仪器视场角等通过大气辐射传输模式正演出到达传感器入瞳处各光谱通道的辐亮度$L_t$。</p>
+<p>对于朗伯体：</p>
+<script type="math/tex; mode=display">
+L_t=\rho\cdot E\cdot\tau/\pi+L_p</script><p>式中，E是太阳直射光与天空散射光在地面上的辐照度；$\tau$为大气透过率，在进行辐射定标时可以假定为1（即大气是透明的）；$\rho$是反射率；$L_p$为大气产生的程辐射。</p>
+<p>对于非朗伯体，上式可修改为：</p>
+<script type="math/tex; mode=display">
+L_t=BRF\cdot E\cdot\tau/\pi+L_p</script><p>式中，BRF为双向反射因子。</p>
+<p>$L_t$与探测器对应的输出信号的数字量比值C（图像的灰度级）之间的定量关系，按线性模型处理为：$L_t=A\cdot C$，其中A为辐射校正系数。</p>
+<p><strong>2.红外波段的辐射校正</strong></p>
+<p>对于红外波段，尤其是热红外波段，卫星上传感器入瞳处接收的总辐射由3部分组成：(1)通过大气向上传输的直接地面辐射；(2)由大气自生向上传输的辐射；(3)大气向下辐射到达地面反射后通过大气向上传输的辐射。</p>
+<p>如选择清洁水面为目标，那么按线性模型处理为：</p>
+<script type="math/tex; mode=display">
+I_{\Delta\lambda}=A^\ast\cdot C</script><p>式中，$A^\ast$为红外波段辐射校正系数。</p>
+<p><strong>3.图像的灰度级和辐亮度</strong></p>
+<p>图像上的像素值为灰度级，实际的电磁波辐射强度为辐照度，在图像数字化的时候，电磁波辐亮度被量化为灰度级。</p>
+<p>对于一个8位量化（量化级为256）的图像，一个基本的转换方程为</p>
+<script type="math/tex; mode=display">
+L=(L_{max}-L_{min})/255\times DN+L_{min}</script><p>式中，L为图像的辐亮度，单位$W/(m^2\cdot sr)$；$L<em>{min}$为最小灰度级对应的辐亮度，$L</em>{max}$为最大灰度级对应的辐亮度；DN为图像中像素的灰度级。</p>
+<h1 id="大气校正"><a href="#大气校正" class="headerlink" title="大气校正"></a>大气校正</h1><p>消除由大气散射引起的辐射误差的处理过程成为大气校正。在遥感图像中，卫星遥感图像需要大气校正，而航空摄影图像根据飞行高度可选择不进行大气校正，但大气校正后可以得到更精确的地物辐射值。</p>
+<p>大气校正主要有3种方法：(1)统计学方法，(2)辐射传递方程计算法，(3)波段对比法。</p>
+<h2 id="统计学方法"><a href="#统计学方法" class="headerlink" title="统计学方法"></a>统计学方法</h2><p>统计学方法需要与卫星同步在野外进行光谱测量，主要有内部平均法、平常域法、经验现行法和实测光谱回归方法等。</p>
+<p><strong>1.内部平均法</strong></p>
+<p>校正后为相对放射率，这是基于图像的方法，主要考虑各种因素的乘性贡献。</p>
+<p>内部平均法假定衣服图像内部的地物成分混杂，整幅图像的平均光谱基本代表了大气影响下的太阳光谱信息。因此把图像亮度值DN与整幅图像的平均辐射光谱值的比值作为相对反射率，即$\rho<em>\lambda=\frac{R</em>\lambda}{F<em>\lambda}$。式中，$\rho</em>\lambda$为相对反射率，$R<em>\lambda$为像素值，$F</em>\lambda$为整幅图像的平均光谱值。</p>
+<p>内部平均法可以显著消除地形阴影和其他整体亮度差异，但是该方法假设地面变化是充分异构的，如果这个假设不成立，得到的反射光谱会有虚假性。</p>
+<p><strong>2.平场域法</strong></p>
+<p>校正后为相对放射率，这是基于图像的方法，主要考虑各种因素的乘性贡献。</p>
+<p>平场域法要求图像具有一个光谱反射率曲线变化相对平坦、比较均一的区域，该区域的平均光谱受太阳辐射、大气散射和吸收影响的共同控制。该方法有两个假设条件：(1)区域的平均光谱没有明显的吸收特征；(2)区域辐射光谱主要反映当时大气条件下的太阳光谱。</p>
+<p>作为平场的是图像中一块面积大、亮度高、光谱相应曲线变化平缓的区域。将每个像素的DN值与该区域的平均值的比值作为地表反射率，以此消除大气的影响，即$\rho<em>\lambda=\frac{R</em>\lambda}{F<em>\lambda}$。式中，$\rho</em>\lambda$为相对反射率，$R<em>\lambda$为像素辐射值，$F</em>\lambda$为定标点(平场域)的平均辐射光谱值。</p>
+<p>平场域通常需要通过人机交互来选择。同时，自然景观中具有完全平的反射光谱的物质很少，选择一个合适的平场较为困难。平场光谱中任何显著的光谱吸收特征将造成相对反射率计算结果的虚假性，如果地区存在显著海拔变化，转换结果会包含地形阴影和大气路径辐射差异的残余影响。</p>
+<p><strong>3.经验线性法</strong></p>
+<p>校正后为绝对反射率值，主要考虑各种因素的加性贡献。</p>
+<p>经验线性法需要两个以上光谱均一、有一定面积大小的目标，分别为暗目标和亮目标——作为定标点。假定图像DN值与反射率r之间存在线性关系$DN=k\cdot r+b$。</p>
+<p>实测定标点的地面反射光谱值，计算图像上对应像素点的平均辐射光谱，利用线性回归建立反射光谱与像素值之间的相互关系，借此计算像素的反射率。</p>
+<p>对定标点有如下要求：(1)选择尽可能各向同性的均一地物且面积足够大；(2)地物在光谱上要跨越尽可能宽的反射光谱段，明暗目标间有足够的差异；(3)尽可能与研究区域保持同一海拔高度。该方法仅设计用于包含地面实况数据的图像。</p>
+<p>该方法的转换结果是“表观的”反射率，因为这个转换没有包括可能的地形影响（阴影和大气路径辐射差异）。</p>
+<h2 id="辐射传递方程计算法"><a href="#辐射传递方程计算法" class="headerlink" title="辐射传递方程计算法"></a>辐射传递方程计算法</h2></div><div class="post-reward"><div class="post-reward-btn" title="赞赏作者"><img src="/assets/images/svg/uc/uc-gift.svg" class="icon noview" alt="Icon"><span></span></div><div class="post-reward-content"><div class="post-reward-text"></div><div class="post-reward-list"><a href="/null" target="_blank">致谢名单</a></div></div></div><div class="post-copyright"><div class="post-copyright-info">本作品由 blackMZX 于 2023-10-30 09:36:07 发布</div><div class="post-copyright-link"><span>作品地址：<a href="http://example.com/2023/10/30/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%A0%A1%E6%AD%A3/">遥感图像处理 图像校正</a></span><button class="copy-text" type="button" data-text="http://example.com/2023/10/30/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%A0%A1%E6%AD%A3/">复制</button></div><div class="post-copyright-detail">除特别声明外，本站作品均采用 <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/' title='Attribution-NonCommercial-ShareAlike' target='_blank'>CC BY-NC-SA 4.0</a> 许可协议，转载请注明来自 <a href='/'>blackMZX</a></div><img class="post-copyright-icon noview" src="/assets/images/Hexo-Theme-MEOW.png" alt="Logo"/></div><div class="post-tail-tags"><a class="post-tail-tags-link" href="/tags/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">遥感图像处理</a></div><div class="post-nav"><a class="post-nav-prev" nopost=""></a><a class="post-nav-next" href="/2023/10/23/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA%E5%92%8C%E6%8B%89%E4%BC%B8/" title="遥感图像处理 图像显示和拉伸">下一篇<span>遥感图像处理 图像显示和拉伸</span></a></div></div><aside id="post-sidebar" status="show"><div id="toc-container"><div class="toc-title"><img src="/assets/images/svg/ta/ta-toc.svg" class="icon noview" alt="Icon"><span>目录</span></div><div class="toc-content" id="toc-div"><ol class="toc-list"><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#%E8%BE%90%E5%B0%84%E4%BC%A0%E8%BE%93"><span class="toc-list-text">辐射传输</span></a><ol class="toc-list-child"><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-list-text">基本概念</span></a></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#%E7%94%B5%E7%A3%81%E6%B3%A2%E7%9A%84%E5%A4%A7%E6%B0%94%E4%BC%A0%E8%BE%93"><span class="toc-list-text">电磁波的大气传输</span></a></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#%E8%BE%90%E5%B0%84%E4%BC%A0%E8%BE%93%E7%90%86%E8%AE%BA"><span class="toc-list-text">辐射传输理论</span></a></li></ol></li><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#%E8%BE%90%E5%B0%84%E8%AF%AF%E5%B7%AE"><span class="toc-list-text">辐射误差</span></a></li><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#%E7%B3%BB%E7%BB%9F%E8%BE%90%E5%B0%84%E8%AF%AF%E5%B7%AE%E6%A0%A1%E6%AD%A3"><span class="toc-list-text">系统辐射误差校正</span></a></li><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8%E7%AB%AF%E7%9A%84%E8%BE%90%E5%B0%84%E6%A0%A1%E6%AD%A3"><span class="toc-list-text">传感器端的辐射校正</span></a></li><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#%E5%A4%A7%E6%B0%94%E6%A0%A1%E6%AD%A3"><span class="toc-list-text">大气校正</span></a><ol class="toc-list-child"><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#%E7%BB%9F%E8%AE%A1%E5%AD%A6%E6%96%B9%E6%B3%95"><span class="toc-list-text">统计学方法</span></a></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#%E8%BE%90%E5%B0%84%E4%BC%A0%E9%80%92%E6%96%B9%E7%A8%8B%E8%AE%A1%E7%AE%97%E6%B3%95"><span class="toc-list-text">辐射传递方程计算法</span></a></li></ol></li></ol></div></div></aside></div></div><div id="toolbar" hide=""><div id="toolbar-setting-container" hide=""><div class="toolbar-item"><button id="tool-color-mode" title="深色模式" type="button"><img src="/assets/images/svg/ta/ta-moon.svg" class="icon noview" alt="Icon"></button></div><div class="toolbar-item"><button class="copy-text" id="tool-share" title="分享" type="button" data-text="http://example.com/2023/10/30/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E6%A0%A1%E6%AD%A3/"><img src="/assets/images/svg/ta/ta-share.svg" class="icon noview" alt="Icon"></button></div><div class="toolbar-item"><button id="tool-font-size-plus" title="放大字体" type="button"><img src="/assets/images/svg/ta/ta-text-plus.svg" class="icon noview" alt="Icon"></button></div><div class="toolbar-item"><button id="tool-font-size-minus" title="缩小字体" type="button"><img src="/assets/images/svg/ta/ta-text-minus.svg" class="icon noview" alt="Icon"></button></div></div><div class="toolbar-container"><div class="toolbar-item"><button id="tool-setting" title="设置" type="button"><img src="/assets/images/svg/ta/ta-setting.svg" class="icon noview" alt="Icon"></button></div><div class="toolbar-item"><button id="tool-toc" title="目录" type="button"><img src="/assets/images/svg/ta/ta-toc.svg" class="icon noview" alt="Icon"></button></div><div class="toolbar-item"><button id="tool-gototop" title="返回顶部" type="button"><img src="/assets/images/svg/ta/ta-up.svg" class="icon noview" alt="Icon"></button></div></div></div><div id="music-player"></div></main><footer><div class="footer"><div id="footer-copyright">© 2024 - 2026 <span>💗</span> <a href="/null">blackMZX</a></div><div id="footer-info"><div id="footer-framework">🚀本站由 <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/chanwj/hexo-theme-meow" title="3.3.2" target="_blank">Meow</a> 强力驱动</div><div id="footer-runtime"><span id="runtime" data-startdate="2024-04-02T22:16:20.000Z">🌻已稳定运行.年.月.天</span></div></div></div></footer><div class="scripts"><script>const GLOBALCONFIG = {
+  root: '/',
+  toolbar: true,
+  lazyload_src: '/assets/images/Meow-Loading.webp',
+  friends: false,
+  album: '',
+  codeblock: true,
+  code_copy_text: false,
+  share_text: '🐱Share From Meow',
+  onblur_title: 'Please Come Back～✧(´▽`ʃ♡ƪ)',
+  mouse_click: false,
+  notify:{
+    enable: false,
+    info: '复制成功～转载请标注本文地址',
+    f12_info: '开发者模式已打开，请遵循本站版权协议'
+  },
+  search: {
+    enable: false,
+    path: '',
+    local: {
+      top_n_per_article: 1,
+      preload: false
+    }
+  },
+  encrypt: false,
+  category: false,
+};
+</script><script>if (!localStorage.getItem('color-mode')) {
+  localStorage.setItem('color-mode', 'light' || 'light');
+}
+document.body.setAttribute('data-mode', localStorage.getItem('color-mode'));
+</script>
+<script src="/js/theme/tools/utils.js"></script>
+
+<script src="/js/plugins/dist/lazyload.min.js"></script>
+
+<script src="/js/plugins/view-image.min.js"></script>
+<script>if (localStorage.getItem('font-size')) {
+  document.querySelector('.post').style.fontSize = localStorage.getItem('font-size') + 'px';
+}
+</script>
+<script src="/js/plugins/dist/APlayer.min.js"></script>
+<script>const initAplayer = (data) => {
+  if (!data.length) return;
+
+  const ap = new APlayer({
+    container: document.getElementById('music-player'),
+    fixed: true,
+    autoplay: false,
+    theme: '#FFB347',
+    loop: 'all',
+    order: 'list',
+    volume: 0.7,
+    lrcType: 3,
+    audio: data
   });
-</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
+
+  ap.on('play', () => {
+    document.getElementById('music-player').setAttribute("play", "");
+  });
+  ap.on('pause', () => {
+    document.getElementById('music-player').removeAttribute("play");
+  });
+};
+
+const fetchData = () => {
+  fetch('')
+    .then(res => res.json())
+    .then(result => initAplayer(result));
+};
+
+if ('') {
+  document.addEventListener("DOMContentLoaded", fetchData);
+} else {
+  document.addEventListener("DOMContentLoaded", initAplayer());;
+}</script>
+<script src="/js/main.js" type="module"></script>
+</div></body></html>
